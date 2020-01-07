@@ -1,6 +1,8 @@
 extern crate num_bigint;
 extern crate num_traits;
 
+mod panel;
+
 use std::fmt;
 use std::fs::File;
 use std::path::Path;
@@ -10,6 +12,10 @@ use num_bigint::BigInt;
 use num_traits::{Zero, One, ToPrimitive};
 use std::ops::Add;
 use std::collections::HashMap;
+
+use panel::Panel;
+use panel::Color;
+
 
 fn _0() -> BigInt { Zero::zero() }
 
@@ -476,7 +482,10 @@ fn main() {
     vm.resume();
     vm.add_input(BigInt::from(4));
     vm.resume();
-    println!("Output: {}", vm.read_output())
+    println!("Output: {}", vm.read_output());
+    let mut panel = Panel::new();
+    panel.paint(Color::WHITE);
+    panel.turn_left();
 }
 
 fn read_program() -> Vec<BigInt> {
