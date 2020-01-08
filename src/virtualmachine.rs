@@ -10,7 +10,6 @@ use std::ops::Add;
 use std::collections::HashMap;
 
 
-
 fn _0() -> BigInt { Zero::zero() }
 
 fn _1() -> BigInt { One::one() }
@@ -460,6 +459,10 @@ impl VM {
             self.exec_inst();
         }
         println!("end vm={}", self);
+    }
+
+    pub fn is_halted(&self) -> bool {
+        return self.halted;
     }
 }
 

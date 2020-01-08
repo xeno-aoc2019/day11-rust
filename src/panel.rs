@@ -77,5 +77,9 @@ impl Panel {
         self.painted_squares.len()
     }
     pub fn pos(& self ) -> (i64, i64) {self.position}
+
+    pub fn is_on_white(&self) -> bool {
+        self.white_squares.contains(&self.position)
+    }
 }
 

@@ -34,24 +34,33 @@ struct Instruction {
 fn main() {
     let program = input::read_program("input.txt");
     let mut vm = virtualmachine::VM::new(program.clone(), vec!());
-    vm.run();
-    vm.add_input(_1());
-    println!("{}", vm);
-    vm.resume();
-    vm.add_input(BigInt::from(4));
-    vm.resume();
-    println!("Output: {}", vm.read_output());
     let mut panel = Panel::new();
-    panel.paint(Color::WHITE);
-    panel.turn_left();
-    panel.step();
-    panel.turn_right();
-    panel.paint(Color::WHITE);
-    panel.paint(Color::BLACK);
-    panel.step();
-    panel.paint(Color::BLACK);
-    println!("White: count: {}", panel.white_count());
-    println!("Painted: count: {}", panel.paint_count());
-    println!("Position: ({},{})", panel.pos().0, panel.pos().1);
+    vm.run();
+    while !vm.is_halted() {
+        if panel.is_on_white() {
+            vm.add_input(_1());
+        } else {
+            vm.add_input(_0());
+        }
+//        println!("{}", vm);
+        vm.resume();
+        let out_1 = vm.read_output();
+        let out_2 = vm.read_output();
+        if out_1 == _0() {
+            panel.paint(Color::BLACK);
+        } else if out_1 == _1() {
+            panel.paint(Color::WHITE);
+        } else {
+            panic!("out_1 = {}", out_1);
+        }
+        if out_2 == _0() {
+            panel.turn_left();
+        } else if out_2 == _1() {
+            panel.turn_right();
+        } else {
+            panic!("out_2 = {}", out_2);
+        }
+        panel.step();
+    }
 }
 
