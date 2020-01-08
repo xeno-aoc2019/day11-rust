@@ -486,6 +486,15 @@ fn main() {
     let mut panel = Panel::new();
     panel.paint(Color::WHITE);
     panel.turn_left();
+    panel.step();
+    panel.turn_right();
+    panel.paint(Color::WHITE);
+    panel.paint(Color::BLACK);
+    panel.step();
+    panel.paint(Color::BLACK);
+    println!("White: count: {}", panel.white_count());
+    println!("Painted: count: {}", panel.paint_count());
+    println!("Position: ({},{})", panel.pos().0, panel.pos().1);
 }
 
 fn read_program() -> Vec<BigInt> {
