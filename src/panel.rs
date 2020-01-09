@@ -76,10 +76,18 @@ impl Panel {
     pub fn paint_count(&self) -> usize {
         self.painted_squares.len()
     }
-    pub fn pos(& self ) -> (i64, i64) {self.position}
+    pub fn pos(&self) -> (i64, i64) { self.position }
 
     pub fn is_on_white(&self) -> bool {
         self.white_squares.contains(&self.position)
+    }
+
+    pub fn get_whites(&self) -> HashSet<(i64, i64)> {
+        return self.white_squares.clone();
+    }
+
+    pub fn is_white(&self, x: i64, y: i64) -> bool {
+        self.white_squares.contains(&(x, y))
     }
 }
 

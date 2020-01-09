@@ -187,7 +187,7 @@ impl VM {
             println!("Tried to read a negative memory address: {}", addr);
             panic!("Illegal memory access");
         }
-        if addr > BigInt::from(self.program.len()) {
+        if addr >= BigInt::from(self.program.len()) {
             let val = match self.high_mem.get(&addr) {
                 Some(value) => value.clone(),
                 None => Zero::zero()
