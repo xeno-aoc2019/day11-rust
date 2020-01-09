@@ -62,5 +62,7 @@ fn main() {
         }
         panel.step();
     }
+    println!("WHITE COUNT {}", panel.white_count());
+    println!("PAINT COUNT {}", panel.paint_count());
 }
 
